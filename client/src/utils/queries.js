@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-export const QUERY_MR = gql `
+export const QUERY_ME = gql `
 {
     me {
         _id
