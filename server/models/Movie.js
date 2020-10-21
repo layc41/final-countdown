@@ -11,7 +11,7 @@ const movieSchema = new Schema({
     required: true,
   },
   movieId: {
-    type: Number,
+    type: Int,
     required: true,
   },
   posterPath: {
@@ -27,7 +27,7 @@ const movieSchema = new Schema({
     required: true,
   },
   runtime: {
-    type: Number,
+    type: Int,
     required: true
   }
 });
