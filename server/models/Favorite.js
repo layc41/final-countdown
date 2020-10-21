@@ -2,7 +2,7 @@
 const { Schema } = require('mongoose');
 
 // This is a subdocument schema used to populate savedMovies under the User model
-const movieSchema = new Schema({
+const favoriteSchema = new Schema({
   homepage: {
       type: String
   },
@@ -32,4 +32,4 @@ const movieSchema = new Schema({
   }
 });
 
-module.exports = movieSchema;
+module.exports = favoriteSchema;
