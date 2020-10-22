@@ -7,6 +7,8 @@ import Navbar from './components/Navbar';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import NoMatch from './pages/NoMatch';
+import TopRated from './components/TopRated';
+import SearchMovies from './components/SearchMovies';
 
 const client = new ApolloClient({
   request: operation => {
@@ -38,6 +40,10 @@ function App() {
           </Switch>
         </div>
         
+        <div>
+          <SearchMovies />
+          <TopRated />
+        </div>
       </div>
     </Router>
   </ApolloProvider>
