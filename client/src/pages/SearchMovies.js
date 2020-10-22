@@ -14,21 +14,21 @@ const SearchMovies = () => {
 
   const [searchInput, setSearchInput] = useState('');
 
-  const [savedMovieIds, setSavedMovieIds] = useState(setSavedMovieIds());
+  // const [savedMovieIds, setSavedMovieIds] = useState(setSavedMovieIds());
 
-  useEffect(() => {
-    return () => saveMovieIds(savedMovieIds);
-  });
+  // useEffect(() => {
+  //   return () => saveMovieIds(savedMovieIds);
+  // });
 
-  const [ saveMovie ] = useMutation(SAVE_MOVIE, {
-    update(cache, {data: {saveMovie}}) {
-      const {me} = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
-      })
-    }
-  })
+  // const [ saveMovie ] = useMutation(SAVE_MOVIE, {
+  //   update(cache, {data: {saveMovie}}) {
+  //     const {me} = cache.readQuery({ query: QUERY_ME });
+  //     cache.writeQuery({
+  //       query: QUERY_ME,
+  //       data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
+  //     })
+  //   }
+  // })
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -44,9 +44,9 @@ const SearchMovies = () => {
         throw new Error('something went wrong!');
       }
 
-      const { items } = await response.json();
+      const { results } = await response.json();
 
-      const movieData = items.map((movie) => ({
+      const movieData = results.map((movie) => ({
         movieId: movie.id,
         title: movie.title,
         description: movie.overview,
@@ -60,28 +60,28 @@ const SearchMovies = () => {
     }
   };
 
-  const handleSaveMovie = async (movieId) => {
+  // const handleSaveMovie = async (movieId) => {
 
-    const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
+  //   const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
 
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!token) {
-      return false;
-    }
+  //   if (!token) {
+  //     return false;
+  //   }
 
-    try {
-      await saveMovie({
-        variables: {
-          movie: movieToSave,
-        },
-      });
+  //   try {
+  //     await saveMovie({
+  //       variables: {
+  //         movie: movieToSave,
+  //       },
+  //     });
 
-      setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //     setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   return (
     <>
@@ -121,12 +121,12 @@ const SearchMovies = () => {
             return (
               <Card key={movie.movieId} border='dark'>
                 {movie.image ? (
-                  <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`} alt={`The cover for ${movie.title}`} variant='top' />
+                  <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.image}`} alt={`The cover for ${movie.title}`} variant='top' />
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
                   <Card.Text>{movie.description}</Card.Text>
-                  {Auth.loggedIn() && (
+                  {/* {Auth.loggedIn() && (
                     <Button
                       disabled={savedMovieIds?.some((savedMovieIds) => savedMovieIds === movie.movieId)}
                       className='btn-block btn-info'
@@ -135,7 +135,7 @@ const SearchMovies = () => {
                         ? 'This movie has already been saved!'
                         : 'Save this Movie!'}
                     </Button>
-                  )}
+                  )} */}
                 </Card.Body>
               </Card>
             );
