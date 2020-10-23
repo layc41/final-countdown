@@ -7,7 +7,7 @@ const resolvers = {
         me: async (parent, args, context) => {
             if (context.user) {
                 const foundUser = await User.findOne({ _id: context.user._id })
-                    .select('__v -password')
+                    .select('-__v -password')
                     .populate('favorites')
                     .populate('savedMovies')
                 return foundUser;
@@ -31,6 +31,8 @@ const resolvers = {
             }
 
             const token = signToken(user)
+            console.log('token', token)
+            console.log('user', user)
             return { token, user };
         },
         addUser: async (parent, args) => {
