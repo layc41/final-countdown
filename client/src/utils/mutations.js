@@ -25,7 +25,7 @@ export const ADD_USER = gql`
 `;
 
 export const SAVE_MOVIE = gql`
- mutation saveMovie(movie: saveMovieInput)
+ mutation saveMovie($movie: saveMovieInput) {
     saveMovie(movie: $movie) {
       _id
         username
@@ -53,11 +53,12 @@ export const SAVE_MOVIE = gql`
             title
             runtime
         }
+      }
     }
 `;
 
 export const ADD_FAVORITE = gql`
- mutation addFavorite(movie: saveMovieInput)
+ mutation addFavorite($movie: saveMovieInput) {
     addFavorite(movie: $movie) {
       _id
         username
@@ -85,11 +86,12 @@ export const ADD_FAVORITE = gql`
             title
             runtime
         }
+      }
     }
 `;
 
 export const REMOVE_MOVIE = gql`
-  mutation removeMovie(movieId: Int!)
+  mutation removeMovie($movieId: Int!) {
     removeMovie(movieId: $movieId) {
     _id
       username
@@ -118,10 +120,11 @@ export const REMOVE_MOVIE = gql`
           runtime
       }
     }
+  }
 `;
 
 export const REMOVE_FAVORITE = gql`
-  mutation removeFavorite(movieId: Int!)
+  mutation removeFavorite($movieId: Int!) {
     removeFavorite(movieId: $movieId) {
       _id
         username
@@ -149,5 +152,6 @@ export const REMOVE_FAVORITE = gql`
             title
             runtime
         }
+      }
     }
 `;
