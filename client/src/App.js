@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import NoMatch from './pages/NoMatch';
-// import TopRated from './components/TopRated';
+import TopRated from './components/TopRated';
 import SearchMovies from './pages/SearchMovies';
 require ('dotenv').config();
 
@@ -33,6 +33,10 @@ function App() {
         
         <div className="container">
           <Navbar />
+          <div>
+          {/* <SearchMovies /> */}
+          {/* <TopRated /> */}
+          </div>
           <Switch>
             <Route exact path="/" component={SearchMovies} />
             <Route exact path="/login" component={LoginForm} />
@@ -41,11 +45,7 @@ function App() {
             <Route component={NoMatch} />
           </Switch>
         </div>
-        
-        <div>
-          {/* <SearchMovies /> */}
-          {/* <TopRated /> */}
-        </div>
+  
       </div>
     </Router>
   </ApolloProvider>
