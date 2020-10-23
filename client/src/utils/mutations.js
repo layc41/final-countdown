@@ -24,18 +24,130 @@ export const ADD_USER = gql`
   }
 `;
 
-// export const SAVE_MOVIE = gql`
+export const SAVE_MOVIE = gql`
+ mutation saveMovie(movie: saveMovieInput)
+    saveMovie(movie: $movie) {
+      _id
+        username
+        email
+        password
+        movieCount
+        savedMovies {
+            _id
+            movieId
+            homepage
+            overview
+            posterPath
+            tagline
+            title
+            runtime
+        }
+        favoriteCount
+        favorites {
+            _id
+            movieId
+            homepage
+            overview
+            posterPath
+            tagline
+            title
+            runtime
+        }
+    }
+`;
 
-// `;
+export const ADD_FAVORITE = gql`
+ mutation addFavorite(movie: saveMovieInput)
+    addFavorite(movie: $movie) {
+      _id
+        username
+        email
+        password
+        movieCount
+        savedMovies {
+            _id
+            movieId
+            homepage
+            overview
+            posterPath
+            tagline
+            title
+            runtime
+        }
+        favoriteCount
+        favorites {
+            _id
+            movieId
+            homepage
+            overview
+            posterPath
+            tagline
+            title
+            runtime
+        }
+    }
+`;
 
-// export const ADD_FAVORITE = gql`
- 
-// `;
+export const REMOVE_MOVIE = gql`
+  mutation removeMovie(movieId: Int!)
+    removeMovie(movieId: $movieId) {
+    _id
+      username
+      email
+      password
+      movieCount
+      savedMovies {
+          _id
+          movieId
+          homepage
+          overview
+          posterPath
+          tagline 
+          title
+          runtime
+      }
+      favoriteCount
+      favorites {
+          _id
+          movieId
+          homepage
+          overview
+          posterPath
+          tagline
+          title
+          runtime
+      }
+    }
+`;
 
-// export const REMOVE_MOVIE = gql`
-
-// `;
-
-// export const REMOVE_FAVORITE = gql`
-
-// `;
+export const REMOVE_FAVORITE = gql`
+  mutation removeFavorite(movieId: Int!)
+    removeFavorite(movieId: $movieId) {
+      _id
+        username
+        email
+        password
+        movieCount
+        savedMovies {
+            _id
+            movieId
+            homepage
+            overview
+            posterPath
+            tagline 
+            title
+            runtime
+        }
+        favoriteCount
+        favorites {
+            _id
+            movieId
+            homepage
+            overview
+            posterPath
+            tagline
+            title
+            runtime
+        }
+    }
+`;
