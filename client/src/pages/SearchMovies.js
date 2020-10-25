@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Jumbotron, Container, Col, Form, Button, Card, CardColumns, CardGroup, Row } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { searchMovieDb } from '../utils/API';
 // import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
@@ -96,20 +96,24 @@ const SearchMovies = () => {
           </Form>
         </Container>
       
-      <Container className='bg-secondary'>
+      <Container>
         <h2 className='search-headers'>
           {searchedMovies.length
             ? `Viewing ${searchedMovies.length} results:`
             : ''}
         </h2>
-        <CardColumns>
+        
           {searchedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} border='dark'>
+              <CardGroup>
+              <Row>
+                <Col>
+                <Card key={movie.movieId} border='dark'>
                 {movie.image ? (
-                  <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.image}`} alt={`The cover for ${movie.title}`} variant='top' />
+                  <Card.Img className='d-flex justify-content-center' src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.image}`} alt={`The cover for ${movie.title}`} variant='top' />
                 ) : null}
-                <Card.Body>
+                
+                <Card.Body className='justify-content-center'>
                   <Card.Title>{movie.title}</Card.Title>
                   <Card.Text>{movie.description}</Card.Text>
                   {/* {Auth.loggedIn() && (
@@ -124,9 +128,12 @@ const SearchMovies = () => {
                   )} */}
                 </Card.Body>
               </Card>
+              </Col>
+              </Row>
+              </CardGroup>
             );
           })}
-        </CardColumns>
+        
       </Container>
     </>
   );

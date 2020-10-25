@@ -91,3 +91,13 @@ code {
   font-family: 'Signika', sans-serif;
   text-align: center;
 }
+
+.row {
+  display: flex;
+  flex-wrap:wrap
+  }
+
+img {
+  max-height: 420px;
+  max-width: 320px;
+}
