@@ -13,14 +13,14 @@ import { getSavedMovieIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } 
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState('');
-  
+
   // local storage to save movie ids
   const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
   });
-  
+
   // local storage to save favorite ids
   const [savedFavoriteIds, setSavedFavoriteIds] = useState(getSavedFavoriteIds());
 
@@ -29,25 +29,25 @@ const SearchMovies = () => {
   });
 
   // get the save movie mutation
-  const [ saveMovie ] = useMutation(SAVE_MOVIE, {
-    update(cache, {data: {saveMovie}}) {
-      const {me} = cache.readQuery({ query: QUERY_ME });
+  const [saveMovie] = useMutation(SAVE_MOVIE, {
+    update(cache, { data: { saveMovie } }) {
+      const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
-        data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
+        data: { me: { ...me, savedMovies: [...me.savedMovies, saveMovie] } }
       })
     }
   })
 
   //get the add favorite mutation
-  const [ addFavorite ] = useMutation(ADD_FAVORITE, {
-    update(cache, {data: {saveMovie}}) {
-          const {me} = cache.readQuery({ query: QUERY_ME });
-          cache.writeQuery({
-            query: QUERY_ME,
-            data: {me: {...me, favorites: [...me.favorites, addFavorite]}}
-          })
-        }
+  const [addFavorite] = useMutation(ADD_FAVORITE, {
+    update(cache, { data: { saveMovie } }) {
+      const { me } = cache.readQuery({ query: QUERY_ME });
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: { me: { ...me, favorites: [...me.favorites, addFavorite] } }
+      })
+    }
   })
 
   const handleFormSubmit = async (event) => {
@@ -154,7 +154,7 @@ const SearchMovies = () => {
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
                   <Card.Text>{movie.description}</Card.Text>
-                  {/* {Auth.loggedIn() && (
+                  {Auth.loggedIn() && (
                     <Button
                       disabled={savedMovieIds?.some((savedMovieIds) => savedMovieIds === movie.movieId)}
                       className='btn-block btn-info'
@@ -163,7 +163,17 @@ const SearchMovies = () => {
                         ? 'This movie has already been saved!'
                         : 'Save this Movie!'}
                     </Button>
-                  )} */}
+                  )}
+                  {Auth.loggedIn() && (
+                    <Button
+                      disabled={savedFavoriteIds?.some((savedFavoriteIds) => savedFavoriteIds === movie.movieId)}
+                      className='btn-block btn-info'
+                      onClick={() => handleFavoriteMovie(movie.movieId)}>
+                      {savedFavoriteIds?.some((savedFavoriteId) => savedFavoriteId === movie.movieId)
+                        ? 'This movie has already been favorited!'
+                        : 'Favorite this Movie!'}
+                    </Button>
+                    )}  
                 </Card.Body>
               </Card>
             );
