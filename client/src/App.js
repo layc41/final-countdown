@@ -10,6 +10,7 @@ import NoMatch from './pages/NoMatch';
 import TopRated from './components/TopRated';
 import SearchMovies from './pages/SearchMovies';
 
+
 const client = new ApolloClient({
   request: operation => {
     const token = localStorage.getItem('id_token');
