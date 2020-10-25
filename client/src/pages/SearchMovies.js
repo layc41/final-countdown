@@ -109,12 +109,13 @@ const SearchMovies = () => {
               <Row>
                 <Col>
                 <Card key={movie.movieId} border='dark'>
-                {movie.image ? (
-                  <Card.Img className='d-flex justify-content-center' src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.image}`} alt={`The cover for ${movie.title}`} variant='top' />
-                ) : null}
                 
-                <Card.Body className='justify-content-center'>
-                  <Card.Title>{movie.title}</Card.Title>
+                <Card.Title className='text-center'>{movie.title}</Card.Title>
+                <Card.Body className='d-flex justify-content-center'>
+                {movie.image ? (
+                  <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.image}`} alt={`The cover for ${movie.title}`} variant='center' />
+                ) : null}
+                  
                   <Card.Text>{movie.description}</Card.Text>
                   {/* {Auth.loggedIn() && (
                     <Button
