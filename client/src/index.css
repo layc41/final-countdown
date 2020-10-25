@@ -45,3 +45,25 @@ code {
 .justify-center {
   justify-content: center;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 85px;
+}
+
+li {
+  list-style: none;
+}
+
+footer ul {
+  padding: 0;
+  margin: 0;
+}
+
+footer li a {
+  height: 50px;
+  font-size: 25px;
+}

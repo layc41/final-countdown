@@ -9,6 +9,7 @@ import SignupForm from './components/SignupForm';
 import NoMatch from './pages/NoMatch';
 import TopRated from './components/TopRated';
 import SearchMovies from './pages/SearchMovies';
+import Footer from './components/Footer';
 
 
 const client = new ApolloClient({
@@ -39,6 +40,7 @@ function App() {
           </Switch>
       </>
     </Router>
+    <Footer />
   </ApolloProvider>
   );
 }
