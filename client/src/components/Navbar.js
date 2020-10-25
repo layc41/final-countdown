@@ -15,10 +15,19 @@ function Navbar() {
                     <h1>Movie Lot</h1>
                 </Link>
 
-                <nav className="text-center">
-                    <Link to="/login">Login</Link>
-                    <Link to="/signup">Signup</Link>
-                        
+                <nav className="align-right">
+                    {Auth.loggedIn() ? (
+                    <>
+                        <a href="/" onClick={logout}>
+                        Logout
+                        </a>
+                    </>
+                    ) : (
+                    <>
+                        <Link to="/login">Login</Link>
+                        <Link to="/signup">Signup</Link>
+                    </>
+                    )}
                 </nav>
             </div>
         </header>
