@@ -8,17 +8,17 @@ import { SAVE_MOVIE} from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 
 //import local storage functionality to store saved books and favorited books
-import { getSavedBookIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
+// import { getSavedBookIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
 
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState('');
 
-  const [savedMovieIds, setSavedMovieIds] = useState(setSavedMovieIds());
+  // const [savedMovieIds, setSavedMovieIds] = useState(setSavedMovieIds());
 
-  useEffect(() => {
-    return () => saveMovieIds(savedMovieIds);
-  });
+  // useEffect(() => {
+  //   return () => saveMovieIds(savedMovieIds);
+  // });
 
   // const [ saveMovie ] = useMutation(SAVE_MOVIE, {
   //   update(cache, {data: {saveMovie}}) {
@@ -72,9 +72,9 @@ const SearchMovies = () => {
   // };
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Search for a Movie!</h1>
+      
+        <Container className='search bg-secondary'>
+          <h1 className='search-headers'>Search for a Movie!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -95,12 +95,12 @@ const SearchMovies = () => {
             </Form.Row>
           </Form>
         </Container>
-      </Jumbotron>
-      <Container>
-        <h2>
+      
+      <Container className='bg-secondary'>
+        <h2 className='search-headers'>
           {searchedMovies.length
             ? `Viewing ${searchedMovies.length} results:`
-            : 'Search for a movie to begin'}
+            : ''}
         </h2>
         <CardColumns>
           {searchedMovies.map((movie) => {

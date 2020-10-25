@@ -37,48 +37,46 @@ const Signup = () => {
 
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-md-6">
-        <div className="card">
-          <h4 className="card-header">Sign Up</h4>
-          <div className="card-body">
-            <form onSubmit={handleFormSubmit}>
+    <div className="container my-1 forms">
+        <h2 className='heading'>Sign Up</h2>
+          <form onSubmit={handleFormSubmit}>
+            <div className="form-group">
               <input
-                className="form-input"
-                placeholder="Your username"
+                className="form-control"
+                placeholder="Enter username"
                 name="username"
                 type="username"
                 id="username"
                 value={formState.username}
                 onChange={handleChange}
               />
+            </div>
+            <div className="form-group">
               <input
-                className="form-input"
-                placeholder="Your email"
+                className="form-control"
+                placeholder="Enter email"
                 name="email"
                 type="email"
                 id="email" 
                 value={formState.email}
                 onChange={handleChange} 
               />
+            </div>
+            <div className="form-group">
               <input
-                className="form-input"
-                placeholder="******"
+                className="form-control"
+                placeholder="Enter Password"
                 name="password"
                 type="password"
                 id="password" 
                 value={formState.password}
                 onChange={handleChange} 
               />
-              <button className="btn d-block w-100" type="submit">
-                Submit 
-              </button> 
-            </form> 
+            </div>
+            <button type="submit" className="btn btn-dark btn-lg btn-block">Sign Up</button>
+          </form> 
             {error && <div> Sign Up Failed! </div>}
-          </div>
-        </div>
-      </div>
-    </main>
+    </div>
   );
 };
 

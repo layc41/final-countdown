@@ -29,27 +29,29 @@ function Login(props) {
   };
 
   return (
-    <div className="container my-1">
+    <div className="container my-1 forms">
       {/* <Link to="/signup">
         ← Go to Signup
       </Link> */}
 
-      <h2>Login</h2>
+      <h2 className='heading'>Login</h2>
       <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="email">Email address:</label>
+        <div className="form-group">
+          <label htmlFor="email" className='heading'>Email address:</label>
           <input
-            placeholder="youremail@test.com"
+            placeholder="Enter email"
+            className="form-control"
             name="email"
             type="email"
             id="email"
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
+        <div className="form-group">
+          <label htmlFor="pwd" className='heading'>Password:</label>
           <input
-            placeholder="******"
+            placeholder="Enter password"
+            className="form-control"
             name="password"
             type="password"
             id="pwd"
@@ -62,9 +64,7 @@ function Login(props) {
           </div> : null
         }
         <div className="flex-row flex-end">
-          <button type="submit">
-            Submit
-          </button>
+        <button type="submit" className="btn btn-dark btn-lg btn-block">Sign in</button>
         </div>
       </form>
     </div>

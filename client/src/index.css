@@ -5,14 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./assets/video-1s-1084px.png');
+  text-align: center;
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-
 
 /* FLEX CONTENT */
 .flex-row {
@@ -44,4 +45,49 @@ code {
 
 .justify-center {
   justify-content: center;
+}
+
+.forms {
+  background-color: black;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.heading {
+  color: white;
+}
+
+.title {
+  color: #ff4411; 
+  font-size: 72px; 
+  font-family: 'Signika', sans-serif; 
+
+}
+
+.signup-link {
+  position:absolute;
+  top:40px;
+  right:10px;
+  color: #ff4411; 
+  font-size: 24px; 
+  font-family: 'Signika', sans-serif;
+}
+
+.login-link {
+  position:absolute;
+  top:5px;
+  right:10px;
+  color: #ff4411; 
+  font-size: 24px; 
+  font-family: 'Signika', sans-serif;
+}
+
+.search {
+  padding: 20px;
+}
+
+.search-headers {
+  color: #ff4411; 
+  font-family: 'Signika', sans-serif;
+  text-align: center;
 }
