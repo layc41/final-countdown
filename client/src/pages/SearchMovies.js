@@ -20,15 +20,15 @@ const SearchMovies = () => {
     return () => saveMovieIds(savedMovieIds);
   });
 
-  // const [ saveMovie ] = useMutation(SAVE_MOVIE, {
-  //   update(cache, {data: {saveMovie}}) {
-  //     const {me} = cache.readQuery({ query: QUERY_ME });
-  //     cache.writeQuery({
-  //       query: QUERY_ME,
-  //       data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
-  //     })
-  //   }
-  // })
+  const [ saveMovie ] = useMutation(SAVE_MOVIE, {
+    update(cache, {data: {saveMovie}}) {
+      const {me} = cache.readQuery({ query: QUERY_ME });
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
+      })
+    }
+  })
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -53,23 +53,23 @@ const SearchMovies = () => {
       console.error(err);
     }
   };
-  // const handleSaveMovie = async (movieId) => {
-  //   const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
-  //   if (!token) {
-  //     return false;
-  //   }
-  //   try {
-  //     await saveMovie({
-  //       variables: {
-  //         movie: movieToSave,
-  //       },
-  //     });
-  //     setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+  const handleSaveMovie = async (movieId) => {
+    const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
+    try {
+      await saveMovie({
+        variables: {
+          movie: movieToSave,
+        },
+      });
+      setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
@@ -112,7 +112,7 @@ const SearchMovies = () => {
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
                   <Card.Text>{movie.description}</Card.Text>
-                  {/* {Auth.loggedIn() && (
+                  {Auth.loggedIn() && (
                     <Button
                       disabled={savedMovieIds?.some((savedMovieIds) => savedMovieIds === movie.movieId)}
                       className='btn-block btn-info'
@@ -121,7 +121,7 @@ const SearchMovies = () => {
                         ? 'This movie has already been saved!'
                         : 'Save this Movie!'}
                     </Button>
-                  )} */}
+                  )}
                 </Card.Body>
               </Card>
             );
