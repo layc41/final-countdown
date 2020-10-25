@@ -52,18 +52,11 @@ footer {
   left: 0;
   right: 0;
   height: 85px;
+  align-items: center;
+  font-size: 30px;
 }
 
 li {
   list-style: none;
 }
 
-footer ul {
-  padding: 0;
-  margin: 0;
-}
-
-footer li a {
-  height: 50px;
-  font-size: 25px;
-}
