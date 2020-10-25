@@ -4,31 +4,51 @@ import Auth from '../utils/auth';
 import { searchMovieDb } from '../utils/API';
 // import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 import { useMutation } from '@apollo/react-hooks';
-import { SAVE_MOVIE} from '../utils/mutations';
+import { SAVE_MOVIE, ADD_FAVORITE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 
 //import local storage functionality to store saved books and favorited books
-import { getSavedBookIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
+import { getSavedMovieIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
 
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState('');
-
-  const [savedMovieIds, setSavedMovieIds] = useState(setSavedMovieIds());
+  
+  // local storage to save movie ids
+  const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
   });
+  
+  // local storage to save favorite ids
+  const [savedFavoriteIds, setSavedFavoriteIds] = useState(getSavedFavoriteIds());
 
-  // const [ saveMovie ] = useMutation(SAVE_MOVIE, {
-  //   update(cache, {data: {saveMovie}}) {
-  //     const {me} = cache.readQuery({ query: QUERY_ME });
-  //     cache.writeQuery({
-  //       query: QUERY_ME,
-  //       data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
-  //     })
-  //   }
-  // })
+  useEffect(() => {
+    return () => saveFavoriteIds(savedFavoriteIds);
+  });
+
+  // get the save movie mutation
+  const [ saveMovie ] = useMutation(SAVE_MOVIE, {
+    update(cache, {data: {saveMovie}}) {
+      const {me} = cache.readQuery({ query: QUERY_ME });
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
+      })
+    }
+  })
+
+  //get the add favorite mutation
+  const [ addFavorite ] = useMutation(ADD_FAVORITE, {
+    update(cache, {data: {saveMovie}}) {
+          const {me} = cache.readQuery({ query: QUERY_ME });
+          cache.writeQuery({
+            query: QUERY_ME,
+            data: {me: {...me, favorites: [...me.favorites, addFavorite]}}
+          })
+        }
+  })
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -53,23 +73,45 @@ const SearchMovies = () => {
       console.error(err);
     }
   };
-  // const handleSaveMovie = async (movieId) => {
-  //   const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
-  //   if (!token) {
-  //     return false;
-  //   }
-  //   try {
-  //     await saveMovie({
-  //       variables: {
-  //         movie: movieToSave,
-  //       },
-  //     });
-  //     setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+
+  // handle saved movies
+  const handleSaveMovie = async (movieId) => {
+    const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
+    try {
+      await saveMovie({
+        variables: {
+          movie: movieToSave,
+        },
+      });
+      setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // handle favorite movies
+  const handleFavoriteMovie = async (movieId) => {
+    const favoriteToSave = searchedMovies.find((movie) => movie.movieId === movieId);
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
+    try {
+      await addFavorite({
+        variables: {
+          movie: favoriteToSave,
+        },
+      });
+      setSavedFavoriteIds([...savedFavoriteIds, favoriteToSave.movieId]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
