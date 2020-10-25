@@ -9,35 +9,30 @@ import { QUERY_ME } from '../utils/queries';
 
 const SavedMovies = () => {
   const { data } = useQuery(QUERY_ME);
-  // const token = Auth.getToken();
-  // console.log(token)
-  // const data = getMe(token)
-  // const username = data.me;
+  const username = data?.me.username
+  // const userSavedMovies = data?.me.savedMovies || [];
+  const userSavedMovies = [
+    {
+      homepage: '',
+      overview: 'In a world where people collect pocket-size monsters (Pokémon) to do battle, a boy comes across an intelligent monster who seeks to be a detective.',
+      movieId: 447404,
+      posterPath: 'wgQ7APnFpf1TuviKHXeEe3KnsTV.jpg',
+      tagline: '',
+      title: 'Pokémon Detective Pikachu',
+      runtime: 1231
+    },
+    {
+      homepage: '',
+      overview: 'In a world where people collect pocket-size monsters (Pokémon) to do battle, a boy comes across an intelligent monster who seeks to be a detective.',
+      movieId: 447404,
+      posterPath: 'wgQ7APnFpf1TuviKHXeEe3KnsTV.jpg',
+      tagline: '',
+      title: 'Pokémon Detective Pikachu',
+      runtime: 1231
+    },
+  ]
 
-  const username = 'Tester'
-  const userSavedMovies = data?.savedMovies || [];
-  // const userSavedMovies = [
-  //   {
-  //     homepage: '',
-  //     overview: 'In a world where people collect pocket-size monsters (Pokémon) to do battle, a boy comes across an intelligent monster who seeks to be a detective.',
-  //     movieId: 447404,
-  //     posterPath: 'wgQ7APnFpf1TuviKHXeEe3KnsTV.jpg',
-  //     tagline: '',
-  //     title: 'Pokémon Detective Pikachu',
-  //     runtime: 1231
-  //   },
-  //   {
-  //     homepage: '',
-  //     overview: 'In a world where people collect pocket-size monsters (Pokémon) to do battle, a boy comes across an intelligent monster who seeks to be a detective.',
-  //     movieId: 447404,
-  //     posterPath: 'wgQ7APnFpf1TuviKHXeEe3KnsTV.jpg',
-  //     tagline: '',
-  //     title: 'Pokémon Detective Pikachu',
-  //     runtime: 1231
-  //   },
-  // ]
-
-  console.log('data', data)
+  console.log('data', data?.me)
   console.log(userSavedMovies)
 
   // const handleFavMovie = async => {
@@ -82,30 +77,6 @@ const SavedMovies = () => {
   // };
   return (
     <>
-      {/* <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Search for a Movie!</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col xs={12} md={8}>
-                <Form.Control
-                  name='searchInput'
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type='text'
-                  size='lg'
-                  placeholder='Search for a movie'
-                />
-              </Col>
-              <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
-                  Submit Search
-                </Button>
-              </Col>
-            </Form.Row>
-          </Form>
-        </Container>
-      </Jumbotron> */}
       <Container>
         <h2>
           {userSavedMovies.length
@@ -126,10 +97,10 @@ const SavedMovies = () => {
                     <Button
                       disabled={savedMovieIds?.some((savedMovieIds) => savedMovieIds === movie.movieId)}
                       className='btn-block btn-info'
-                      onClick={() => handleSaveMovie(movie.movieId)}>
+                      onClick={() => handleRemoveMovie(movie.movieId)}>
                       {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)
-                        ? 'This movie has already been saved!'
-                        : 'Save this Movie!'}
+                        ? 'This movie has already been removed!'
+                        : 'Deleted this Movie!'}
                     </Button>
                   )} */}
                 </Card.Body>
