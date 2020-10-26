@@ -2,23 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { searchMovieDb } from '../utils/API';
-// import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 import { useMutation } from '@apollo/react-hooks';
-import { SAVE_MOVIE} from '../utils/mutations';
+import { SAVE_MOVIE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 
 //import local storage functionality to store saved books and favorited books
-import { getSavedBookIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
+import { getSavedMovieIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
 
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState('');
 
-  const [savedMovieIds, setSavedMovieIds] = useState(setSavedMovieIds());
+  const [savedMovieIds, setSavedMovieIds] = useState([]);
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
-  });
+  }, []);
 
   const [ saveMovie ] = useMutation(SAVE_MOVIE, {
     update(cache, {data: {saveMovie}}) {
@@ -44,8 +43,8 @@ const SearchMovies = () => {
       const movieData = results.map((movie) => ({
         movieId: movie.id,
         title: movie.title,
-        description: movie.overview,
-        image: movie.poster_path || '',
+        overview: movie.overview,
+        posterPath: movie.poster_path || '',
       }));
       setSearchedMovies(movieData);
       setSearchInput('');
@@ -60,6 +59,7 @@ const SearchMovies = () => {
       return false;
     }
     try {
+      console.log(movieToSave)
       await saveMovie({
         variables: {
           movie: movieToSave,
@@ -107,11 +107,11 @@ const SearchMovies = () => {
             return (
               <Card key={movie.movieId} border='dark'>
                 {movie.image ? (
-                  <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.image}`} alt={`The cover for ${movie.title}`} variant='top' />
+                  <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.posterPath}`} alt={`The cover for ${movie.title}`} variant='top' />
                 ) : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <Card.Text>{movie.description}</Card.Text>
+                  <Card.Text>{movie.overview}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedMovieIds?.some((savedMovieIds) => savedMovieIds === movie.movieId)}

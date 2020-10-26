@@ -4,18 +4,15 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type Movie {
     _id: ID
-    movieId: String
-    homepage: String
+    movieId: Int
     overview: String
     posterPath: String
-    tagline: String
     title: String
-    runtime: Int
   }
 
   type Favorite {
     _id: ID
-    movieId: String
+    movieId: Int
     homepage: String
     overview: String
     posterPath: String
@@ -50,13 +47,10 @@ const typeDefs = gql`
   }
 
   input saveMovieInput {
-    movieId: String
-    homepage: String
+    movieId: Int
     overview: String
     posterPath: String
-    tagline: String
     title: String
-    runtime: Int
   }
 
   type Auth {

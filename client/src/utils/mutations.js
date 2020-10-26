@@ -25,36 +25,18 @@ export const ADD_USER = gql`
 `;
 
 export const SAVE_MOVIE = gql`
- mutation saveMovie($movie: saveMovieInput) {
-    saveMovie(movie: $movie) {
+mutation saveMovie($movie: saveMovieInput) {
+  saveMovie(movie: $movie) {
+    username
+    savedMovies {
       _id
-        username
-        email
-        password
-        movieCount
-        savedMovies {
-            _id
-            movieId
-            homepage
-            overview
-            posterPath
-            tagline
-            title
-            runtime
-        }
-        favoriteCount
-        favorites {
-            _id
-            movieId
-            homepage
-            overview
-            posterPath
-            tagline
-            title
-            runtime
-        }
-      }
+      movieId
+      overview
+      posterPath
+      title
     }
+  }
+}
 `;
 
 export const ADD_FAVORITE = gql`
