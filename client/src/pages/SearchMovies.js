@@ -6,13 +6,20 @@ import { searchMovieDb } from '../utils/API';
 import { useMutation } from '@apollo/react-hooks';
 import { SAVE_MOVIE} from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
+
+//import local storage functionality to store saved books and favorited books
+import { getSavedBookIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
+
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState('');
-  // const [savedMovieIds, setSavedMovieIds] = useState(setSavedMovieIds());
-  // useEffect(() => {
-  //   return () => saveMovieIds(savedMovieIds);
-  // });
+
+  const [savedMovieIds, setSavedMovieIds] = useState(setSavedMovieIds());
+
+  useEffect(() => {
+    return () => saveMovieIds(savedMovieIds);
+  });
+
   // const [ saveMovie ] = useMutation(SAVE_MOVIE, {
   //   update(cache, {data: {saveMovie}}) {
   //     const {me} = cache.readQuery({ query: QUERY_ME });
@@ -22,6 +29,7 @@ const SearchMovies = () => {
   //     })
   //   }
   // })
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     if (!searchInput) {
