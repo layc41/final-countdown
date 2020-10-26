@@ -2,33 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns, CardGroup, Row } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { searchMovieDb } from '../utils/API';
-// import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 import { useMutation } from '@apollo/react-hooks';
 import { SAVE_MOVIE} from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 
 //import local storage functionality to store saved books and favorited books
-// import { getSavedBookIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
+import { getSavedBookIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
 
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState('');
 
-  // const [savedMovieIds, setSavedMovieIds] = useState(setSavedMovieIds());
+  const [savedMovieIds, setSavedMovieIds] = useState([]);
 
   // useEffect(() => {
   //   return () => saveMovieIds(savedMovieIds);
   // });
 
-  // const [ saveMovie ] = useMutation(SAVE_MOVIE, {
-  //   update(cache, {data: {saveMovie}}) {
-  //     const {me} = cache.readQuery({ query: QUERY_ME });
-  //     cache.writeQuery({
-  //       query: QUERY_ME,
-  //       data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
-  //     })
-  //   }
-  // })
+  const [ saveMovie ] = useMutation(SAVE_MOVIE, {
+    update(cache, {data: {saveMovie}}) {
+      const {me} = cache.readQuery({ query: QUERY_ME });
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
+      })
+    }
+  })
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -53,23 +52,23 @@ const SearchMovies = () => {
       console.error(err);
     }
   };
-  // const handleSaveMovie = async (movieId) => {
-  //   const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
-  //   if (!token) {
-  //     return false;
-  //   }
-  //   try {
-  //     await saveMovie({
-  //       variables: {
-  //         movie: movieToSave,
-  //       },
-  //     });
-  //     setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+  const handleSaveMovie = async (movieId) => {
+    const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
+    try {
+      await saveMovie({
+        variables: {
+          movie: movieToSave,
+        },
+      });
+      setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <>
       
@@ -98,9 +97,9 @@ const SearchMovies = () => {
       
       <Container>
         <h2 className='search-headers'>
-          {searchedMovies.length
+          {/* {searchedMovies.length
             ? `Viewing ${searchedMovies.length} results:`
-            : ''}
+            : ''} */}
         </h2>
         
           {searchedMovies.map((movie) => {
@@ -117,16 +116,18 @@ const SearchMovies = () => {
                 ) : null}
                   
                   <Card.Text>{movie.description}</Card.Text>
-                  {/* {Auth.loggedIn() && (
+                  
+                  {Auth.loggedIn() && ( 
                     <Button
                       disabled={savedMovieIds?.some((savedMovieIds) => savedMovieIds === movie.movieId)}
-                      className='btn-block btn-info'
+                      className="btn btn-dark btn-lg btn-block align-self-end save-button"
                       onClick={() => handleSaveMovie(movie.movieId)}>
                       {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)
                         ? 'This movie has already been saved!'
                         : 'Save this Movie!'}
                     </Button>
-                  )} */}
+                  )}
+                  
                 </Card.Body>
               </Card>
               </Col>

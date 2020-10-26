@@ -128,4 +128,20 @@ footer {
   height: 85px;
   align-items: center;
   font-size: 30px;
+  text-decoration: none;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: #ff4411;
+}
+
+.title-heading {
+  color: #ff4411; 
+  font-family: 'Signika', sans-serif;
+}
+
+.save-button {
+  max-width: 150px;
 }

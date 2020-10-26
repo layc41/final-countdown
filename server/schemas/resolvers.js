@@ -43,14 +43,14 @@ const resolvers = {
             
             return { token, user };
         },
-        saveMovie: async (parent, { movieId }, context) => {
-            
+        saveMovie: async (parent, { movie }, context) => {
+            console.log('ARGS', movie)
             if (context.user) {
                 const updatedMovies = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $push: { savedMovies: movieId } },
+                    { $push: { savedMovies: movie } },
                     { new: true }
-                ).populate('savedMovies');
+                );
                 return updatedMovies
             }
             throw new AuthenticationError('You need to be logged in!');
