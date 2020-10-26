@@ -119,3 +119,13 @@ img {
   size: 48px;
   color: #ff4411;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 85px;
+  align-items: center;
+  font-size: 30px;
+}
