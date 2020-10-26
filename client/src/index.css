@@ -82,6 +82,15 @@ code {
   font-family: 'Signika', sans-serif;
 }
 
+.logout-link {
+  position:absolute;
+  top:30px;
+  right:10px;
+  color: #ff4411; 
+  font-size: 24px; 
+  font-family: 'Signika', sans-serif;
+}
+
 .search {
   padding: 20px;
 }
@@ -100,4 +109,13 @@ code {
 img {
   max-height: 420px;
   max-width: 320px;
+}
+
+.card-text {
+  padding-left: 10px;
+}
+
+.card-title {
+  size: 48px;
+  color: #ff4411;
 }
