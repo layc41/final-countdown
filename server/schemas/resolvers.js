@@ -55,6 +55,21 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+        removeMovie: async (parent, { movieId }, context) => {
+            console.log('movieID', movieId)
+            if (context.user) {
+                console.log('made it into context')
+                console.log('user_id', context.user._id)
+                const updatedMovies = await User.deleteOne(
+                    {_id: context.user._id},
+                    { $pull: { savedMovies: movieId }},
+                    { new: true }
+                );
+                return updatedMovies
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        }, 
         addFavorite: async (parent, { movieId }, context) => {
             if (context.user) {
               const updatedFavorites = await User.findOneAndUpdate(
@@ -66,19 +81,6 @@ const resolvers = {
               return updatedFavorites;
             }
           
-            throw new AuthenticationError('You need to be logged in!');
-        }, 
-        removeMovie: async (parent, { movieId }, context) => {
-            if (context.user) {
-                const updatedMovies = await User.deleteOne(
-                    {_id: context.user._id},
-                    { $pull: { savedMovies: movieId }}
-                    .populate('savedMovies'),
-                    {new: true }
-                );
-                return updatedMovies
-            }
-
             throw new AuthenticationError('You need to be logged in!');
         }, 
         removeFavorite: async (parent, { movieId }, context) => {

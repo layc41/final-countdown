@@ -75,31 +75,13 @@ export const ADD_FAVORITE = gql`
 export const REMOVE_MOVIE = gql`
   mutation removeMovie($movieId: Int!) {
     removeMovie(movieId: $movieId) {
-    _id
       username
-      email
-      password
-      movieCount
       savedMovies {
           _id
           movieId
-          homepage
           overview
           posterPath
-          tagline 
           title
-          runtime
-      }
-      favoriteCount
-      favorites {
-          _id
-          movieId
-          homepage
-          overview
-          posterPath
-          tagline
-          title
-          runtime
       }
     }
   }

@@ -1,15 +1,27 @@
 import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-// import Auth from '../utils/auth'
+import Auth from '../utils/auth'
 import { REMOVE_MOVIE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
+import { useMutation } from '@apollo/react-hooks';
 
 const SavedMovies = () => {
   const { data } = useQuery(QUERY_ME);
   const username = data?.me.username
   const userSavedMovies = data?.me.savedMovies || [];
   console.log(data?.me)
+  const [savedMovieIds, setSavedMovieIds] = useState([]);
+
+  const [ removeMovie ] = useMutation(REMOVE_MOVIE, {
+    update(cache, {data: {saveMovie}}) {
+      const {me} = cache.readQuery({ query: QUERY_ME });
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
+      })
+    }
+  })
 
   // const handleFavMovie = async => {
   //   const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -34,23 +46,23 @@ const SavedMovies = () => {
   //     console.error(err);
   //   }
   // };
-  // const handleRemoveMovie = async (movieId) => {
-  //   const movieToRemove = searchedMovies.find((movie) => movie.movieId === movieId);
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
-  //   if (!token) {
-  //     return false;
-  //   }
-  //   try {
-  //     await removeMovie({
-  //       variables: {
-  //         movie: movieToRemove,
-  //       },
-  //     });
-  //     setRemovedMovieIds([...savedMovieIds, movieToRemove.movieId]);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+  const handleRemoveMovie = async (movieId) => {
+    const movieToRemove = userSavedMovies.find((movie) => movie.movieId === movieId);
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
+    try {
+      await removeMovie({
+        variables: {
+          movie: movieToRemove,
+        },
+      });
+      setSavedMovieIds([...savedMovieIds, movieToRemove.movieId]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   
   return (
     <>
@@ -70,16 +82,16 @@ const SavedMovies = () => {
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
                   <Card.Text>{movie.overview}</Card.Text>
-                  {/* {Auth.loggedIn() && (
+                  {Auth.loggedIn() && (
                     <Button
                       disabled={savedMovieIds?.some((savedMovieIds) => savedMovieIds === movie.movieId)}
                       className='btn-block btn-info'
                       onClick={() => handleRemoveMovie(movie.movieId)}>
                       {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)
                         ? 'This movie has already been removed!'
-                        : 'Deleted this Movie!'}
+                        : 'Delete this Movie!'}
                     </Button>
-                  )} */}
+                  )}
                 </Card.Body>
               </Card>
             );
