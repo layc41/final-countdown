@@ -10,18 +10,19 @@ const SavedMovies = () => {
   const { data } = useQuery(QUERY_ME);
   const username = data?.me.username
   const userSavedMovies = data?.me.savedMovies || [];
-  console.log(data?.me)
+  // console.log(data?.me)
   const [savedMovieIds, setSavedMovieIds] = useState([]);
 
-  const [ removeMovie ] = useMutation(REMOVE_MOVIE, {
-    update(cache, {data: {saveMovie}}) {
-      const {me} = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
-      })
-    }
-  })
+  const [ removeMovie ] = useMutation(REMOVE_MOVIE);
+    // , {
+    // update(cache, {data: {saveMovie}}) {
+    //   const {me} = cache.readQuery({ query: QUERY_ME });
+    //   cache.writeQuery({
+    //     query: QUERY_ME,
+    //     data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
+    //   })
+    // }
+  // })
 
   // const handleFavMovie = async => {
   //   const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -47,6 +48,9 @@ const SavedMovies = () => {
   //   }
   // };
   const handleRemoveMovie = async (movieId) => {
+    console.log(`WE MADE IT FAM,
+    =====================================
+    movieId, ${movieId}`)
     const movieToRemove = userSavedMovies.find((movie) => movie.movieId === movieId);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
@@ -55,10 +59,11 @@ const SavedMovies = () => {
     try {
       await removeMovie({
         variables: {
-          movie: movieToRemove,
+          movieId: movieToRemove.movieId,
         },
       });
-      setSavedMovieIds([...savedMovieIds, movieToRemove.movieId]);
+      setSavedMovieIds([...savedMovieIds]);
+      window.location.reload()
     } catch (err) {
       console.error(err);
     }

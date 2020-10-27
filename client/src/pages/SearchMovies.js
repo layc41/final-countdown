@@ -19,15 +19,16 @@ const SearchMovies = () => {
     return () => saveMovieIds(savedMovieIds);
   }, []);
 
-  const [ saveMovie ] = useMutation(SAVE_MOVIE, {
-    update(cache, {data: {saveMovie}}) {
-      const {me} = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
-      })
-    }
-  })
+  const [ saveMovie ] = useMutation(SAVE_MOVIE)
+  //   , {
+  //   update(cache, {data: {saveMovie}}) {
+  //     const {me} = cache.readQuery({ query: QUERY_ME });
+  //     cache.writeQuery({
+  //       query: QUERY_ME,
+  //       data: {me: {...me, savedMovies: [...me.savedMovies, saveMovie]}}
+  //     })
+  //   }
+  // })
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();

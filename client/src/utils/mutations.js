@@ -77,11 +77,7 @@ export const REMOVE_MOVIE = gql`
     removeMovie(movieId: $movieId) {
       username
       savedMovies {
-          _id
-          movieId
-          overview
-          posterPath
-          title
+        movieId
       }
     }
   }

@@ -56,13 +56,10 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
         removeMovie: async (parent, { movieId }, context) => {
-            console.log('movieID', movieId)
             if (context.user) {
-                console.log('made it into context')
-                console.log('user_id', context.user._id)
-                const updatedMovies = await User.deleteOne(
+                const updatedMovies = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    { $pull: { savedMovies: movieId }},
+                    { $pull: { savedMovies: { movieId: movieId } } },
                     { new: true }
                 );
                 return updatedMovies
