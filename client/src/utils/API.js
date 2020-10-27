@@ -57,5 +57,5 @@ export const searchMovieDb = (query) => {
 export const topRated = () => {
     const API_KEY = process.env.REACT_APP_API_KEY;
     return fetch(`
-    https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`);
+    https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
 }

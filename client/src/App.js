@@ -38,6 +38,7 @@ function App() {
           </Switch>
       </>
     </Router>
+    <TopRated />
   </ApolloProvider>
   );
 }
