@@ -53,7 +53,7 @@ const resolvers = {
                     { new: true }
 =======
                 const updatedMovies = await User.findByIdAndUpdate(
-                    { _id: context.user._id, 'savedMovies.movieId': {'$ne': movie.movieId } },
+                    { _id: context.user._id },
                     { $addToSet: { savedMovies: movie } },
                     { new: true, runValidators: true }
 >>>>>>> develop
