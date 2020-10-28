@@ -11,12 +11,9 @@ export const QUERY_ME = gql `
         savedMovies {
             _id
             movieId
-            homepage
             overview
             posterPath
-            tagline
             title
-            runtime
         }
         favoriteCount
         favorites {

@@ -9,6 +9,8 @@ import SignupForm from './components/SignupForm';
 import NoMatch from './pages/NoMatch';
 import TopRated from './components/TopRated';
 import SearchMovies from './pages/SearchMovies';
+import Footer from './components/Footer';
+import SavedMovies from './pages/SavedMovies'
 
 
 const client = new ApolloClient({
@@ -31,14 +33,17 @@ function App() {
     <Router>
       <>
       <Navbar />
+        <SearchMovies />
           <Switch>
-            <Route exact path="/" component={SearchMovies} />
+            <Route exact path="/" component={TopRated} />
             <Route exact path="/signup" component={SignupForm} />
             <Route exact path="/login" component={LoginForm}/>
+            <Route exact path="/savedmovies" component={SavedMovies} />
             <Route component={NoMatch} />
           </Switch>
       </>
     </Router>
+    <Footer />
   </ApolloProvider>
   );
 }
