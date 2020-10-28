@@ -7,8 +7,6 @@ import { QUERY_ME } from '../utils/queries';
 import { useMutation } from '@apollo/react-hooks';
 import { removeMovieId } from '../utils/localStorage';
 
-import { removeMovieId } from '../utils/localStorage';
-
 const SavedMovies = () => {
   // Get user data to display
   const { data } = useQuery(QUERY_ME);
@@ -57,12 +55,7 @@ const SavedMovies = () => {
           movieId: movieToRemove.movieId,
         },
       });
-<<<<<<< HEAD
-
-      removeMovieId(movieId);
-=======
       removeMovieId(movieId)
->>>>>>> develop
       setSavedMovieIds([...savedMovieIds]);
       window.location.reload()
     } catch (err) {
@@ -79,10 +72,10 @@ const SavedMovies = () => {
             : `${username}: you have no saved movies`}
         </h2>
 
-        {userSavedMovies.map((movie) => {
-          return (
-            <CardGroup style={{ justifyContent: 'center', textAlign: 'center' }}>
-              <Row>
+        <Row>
+          {userSavedMovies.map((movie) => {
+            return (
+              <CardGroup style={{ justifyContent: 'center', textAlign: 'center' }}>
                 <Col>
                   <Card key={movie.movieId} border='dark'>
 
@@ -111,10 +104,10 @@ const SavedMovies = () => {
 
                   </Card>
                 </Col>
-              </Row>
-            </CardGroup>
-          );
-        })}
+              </CardGroup>
+            );
+          })}
+        </Row>
 
       </Container>
     </>
