@@ -59,12 +59,14 @@ code {
   color: #ff4411; 
   font-size: 72px; 
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-
+  text-align: center;
+  align-items: center;
+  background-color: #6c757d;
 }
 
 .signup-link {
-  position:absolute;
-  top:40px;
+  position:absolute; 
+  top:35px;
   right:10px;
   color: #ff4411; 
   font-size: 24px; 
@@ -82,7 +84,7 @@ code {
 
 .logout-link {
   position:absolute;
-  top:35px;
+  top:5px;
   right:10px;
   color: #ff4411; 
   font-size: 24px; 
@@ -91,12 +93,21 @@ code {
 
 .saved-link {
   position:absolute;
-  top:5px;
+  top:35px;
   right:10px;
   color: #ff4411; 
   font-size: 24px; 
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
+
+.popular-link {
+  position:absolute;
+  top:65px;
+  right:10px;
+  color: #ff4411; 
+  font-size: 24px; 
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+} 
 
 .search {
   padding: 20px;
@@ -165,4 +176,15 @@ a {
 
 .saved {
   padding: 15px;
+}
+
+.px-1 {
+  padding-right: var(--spacing-one);
+  padding-left: var(--spacing-one);
+}
+
+.mx-2 {
+  margin-right: var(--spacing-two);
+  margin-left: var(--spacing-two);
+  color: #ff4411;
 }
