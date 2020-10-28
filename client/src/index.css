@@ -5,14 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./assets/video-1s-1084px.png');
+  text-align: center;
+  padding-bottom: 90px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-
 
 /* FLEX CONTENT */
 .flex-row {
@@ -46,6 +47,88 @@ code {
   justify-content: center;
 }
 
+.forms {
+  background-color: black;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.heading {
+  color: white;
+}
+
+.title {
+  color: #ff4411; 
+  font-size: 72px; 
+  font-family: 'Signika', sans-serif; 
+
+}
+
+.signup-link {
+  position:absolute;
+  top:40px;
+  right:10px;
+  color: #ff4411; 
+  font-size: 24px; 
+  font-family: 'Signika', sans-serif;
+}
+
+.login-link {
+  position:absolute;
+  top:5px;
+  right:10px;
+  color: #ff4411; 
+  font-size: 24px; 
+  font-family: 'Signika', sans-serif;
+}
+
+.logout-link {
+  position:absolute;
+  top:35px;
+  right:10px;
+  color: #ff4411; 
+  font-size: 24px; 
+  font-family: 'Signika', sans-serif;
+}
+
+.saved-link {
+  position:absolute;
+  top:5px;
+  right:10px;
+  color: #ff4411; 
+  font-size: 24px; 
+  font-family: 'Signika', sans-serif;
+}
+
+.search {
+  padding: 20px;
+}
+
+.search-headers {
+  color: #ff4411; 
+  font-family: 'Signika', sans-serif;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-wrap:wrap
+  }
+
+img {
+  max-height: 420px;
+  max-width: 320px;
+}
+
+.card-text {
+  padding-left: 10px;
+}
+
+.card-title {
+  size: 48px;
+  color: #ff4411;
+}
+
 footer {
   position: fixed;
   bottom: 0;
@@ -54,7 +137,20 @@ footer {
   height: 85px;
   align-items: center;
   font-size: 30px;
-  color: #007bff;
+  text-decoration: none;
+  color: black;
 }
 
+a {
+  text-decoration: none;
+  color: #ff4411;
+}
 
+.title-heading {
+  color: #ff4411; 
+  font-family: 'Signika', sans-serif;
+}
+
+.save-button {
+  max-width: 150px;
+}

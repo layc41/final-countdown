@@ -44,40 +44,40 @@ const resolvers = {
             return { token, user };
         },
         saveMovie: async (parent, { movie }, context) => {
+            console.log('ARGS', movie)
             if (context.user) {
-                const updatedMovies = await User.findOneAndUpdate(
+                const updatedMovies = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { savedMovies: movie } },
-                    { new: true }
-                ).populate('savedMovies');
-                return updatedMovies;
+                    { $addToSet: { savedMovies: movie } },
+                    { new: true, runValidators: true }
+                );
+                return updatedMovies
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+        removeMovie: async (parent, { movieId }, context) => {
+            if (context.user) {
+                const updatedMovies = await User.findByIdAndUpdate(
+                    {_id: context.user._id},
+                    { $pull: { savedMovies: { movieId: movieId } } },
+                    { new: true }
+                );
+                return updatedMovies
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        }, 
         addFavorite: async (parent, { movieId }, context) => {
             if (context.user) {
               const updatedFavorites = await User.findOneAndUpdate(
                 { _id: context.user._id },
-                { $push: { favorites: movieId } },
+                { $addToSet: { favorites: movieId } },
                 { new: true }
               ).populate('favorites');
           
               return updatedFavorites;
             }
           
-            throw new AuthenticationError('You need to be logged in!');
-        }, 
-        removeMovie: async (parent, { movieId }, context) => {
-            if (context.user) {
-                const updatedMovies = await User.deleteOne(
-                    {_id: context.user._id},
-                    { $pull: { savedMovies: movieId }}
-                    .populate('savedMovies'),
-                    {new: true }
-                );
-                return updatedMovies
-            }
-
             throw new AuthenticationError('You need to be logged in!');
         }, 
         removeFavorite: async (parent, { movieId }, context) => {
