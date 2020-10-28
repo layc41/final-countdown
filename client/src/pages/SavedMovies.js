@@ -5,6 +5,7 @@ import Auth from '../utils/auth'
 import { REMOVE_MOVIE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import { useMutation } from '@apollo/react-hooks';
+import { removeMovieId } from '../utils/localStorage';
 
 const SavedMovies = () => {
   // Get user data to display
@@ -54,6 +55,7 @@ const SavedMovies = () => {
           movieId: movieToRemove.movieId,
         },
       });
+      removeMovieId(movieId)
       setSavedMovieIds([...savedMovieIds]);
       window.location.reload()
     } catch (err) {
@@ -63,8 +65,8 @@ const SavedMovies = () => {
   
   return (
     <>
-      <Container>
-        <h2>
+      <Container className='justify-content-between' style={{ textAlign: 'center', paddingLeft: '0px', paddingRight: '0px', marginTop: '15px' }} >
+        <h2 className='title-heading'>
           {userSavedMovies.length
             ? `Viewing ${username}'s saved movies:`
             : `${username}: you have no saved movies`}
@@ -72,29 +74,34 @@ const SavedMovies = () => {
        
           {userSavedMovies.map((movie) => {
             return (
-              <CardGroup>
+              <CardGroup style={{ justifyContent: 'center', textAlign: 'center' }}>
               <Row>
                 <Col>
                 <Card key={movie.movieId} border='dark'>
                 
-                <Card.Title className='text-center'>{movie.title}</Card.Title>
-                <Card.Body className='d-flex justify-content-center'>
+                <Card.Title className='text-center' style={{ textAlign: 'center'}}>{movie.title}</Card.Title>
                 {movie.posterPath ? (
-                  <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.posterPath}`} alt={`The cover for ${movie.title}`} variant='center' />
+                  <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.posterPath}`} alt={`The cover for ${movie.title}`} variant='center' className='saved'/>
                 ) : null}
+                <Card.Body className='d-flex justify-content-center'>
+                
                   
                   {/* <Card.Text>{movie.overview}</Card.Text> */}
+                  <div>
                   {Auth.loggedIn() && (
                     <Button
+                      style={{ justifyContent: 'center'}}
                       disabled={savedMovieIds?.some((savedMovieIds) => savedMovieIds === movie.movieId)}
-                      className='btn-block btn-info'
+                      className="btn btn-dark btn-lg btn-block align-self-center save-button mx-auto"
                       onClick={() => handleRemoveMovie(movie.movieId)}>
                       {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)
                         ? 'Removed from your lot!'
                         : 'Remove from your lot'}
                     </Button>
                   )}
+                  </div>
                 </Card.Body>
+            
               </Card>
               </Col>
               </Row>

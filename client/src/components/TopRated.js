@@ -49,13 +49,13 @@ const TopRated = () => {
 
 
   return (
-    <Container className='justify-content-around' >
-        <h2>
+    <Container className='justify-content-between' style={{ textAlign: 'center', paddingLeft: '0px', paddingRight: '0px', marginTop: '15px' }} >
+        <h2 className='title-heading'>
           {trendingData.length
-            ? `Movies Trending Today ${trendingData.length} results:`
-            : 'Movies Trending Today'}
+            ? `Movies Trending This Week `
+            : 'Movies Trending This Week'}
         </h2>
-        <div style={{ display: 'flex', flexWrap: "wrap" }}>
+        <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'center' }}>
           {trendingData.map((movie) => {
               return (
                   <div style={{ width: '200px', margin: '5px'}}>

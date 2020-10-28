@@ -1,8 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url('./assets/video-1s-1084px.png');
@@ -60,17 +58,19 @@ code {
 .title {
   color: #ff4411; 
   font-size: 72px; 
-  font-family: 'Signika', sans-serif; 
-
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  text-align: center;
+  align-items: center;
+  background-color: #6c757d;
 }
 
 .signup-link {
-  position:absolute;
-  top:40px;
+  position:absolute; 
+  top:35px;
   right:10px;
   color: #ff4411; 
   font-size: 24px; 
-  font-family: 'Signika', sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .login-link {
@@ -79,26 +79,35 @@ code {
   right:10px;
   color: #ff4411; 
   font-size: 24px; 
-  font-family: 'Signika', sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .logout-link {
-  position:absolute;
-  top:35px;
-  right:10px;
-  color: #ff4411; 
-  font-size: 24px; 
-  font-family: 'Signika', sans-serif;
-}
-
-.saved-link {
   position:absolute;
   top:5px;
   right:10px;
   color: #ff4411; 
   font-size: 24px; 
-  font-family: 'Signika', sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
+
+.saved-link {
+  position:absolute;
+  top:35px;
+  right:10px;
+  color: #ff4411; 
+  font-size: 24px; 
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.popular-link {
+  position:absolute;
+  top:65px;
+  right:10px;
+  color: #ff4411; 
+  font-size: 24px; 
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+} 
 
 .search {
   padding: 20px;
@@ -106,7 +115,7 @@ code {
 
 .search-headers {
   color: #ff4411; 
-  font-family: 'Signika', sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   text-align: center;
 }
 
@@ -147,10 +156,35 @@ a {
 }
 
 .title-heading {
-  color: #ff4411; 
-  font-family: 'Signika', sans-serif;
+  color: #ff4411;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  background-color: #6c757d!important;
 }
 
 .save-button {
   max-width: 150px;
+}
+
+.footerName {
+  text-align: center;
+  color: #ff4411;
+}
+
+.searchInput {
+  text-align: center;
+}
+
+.saved {
+  padding: 15px;
+}
+
+.px-1 {
+  padding-right: var(--spacing-one);
+  padding-left: var(--spacing-one);
+}
+
+.mx-2 {
+  margin-right: var(--spacing-two);
+  margin-left: var(--spacing-two);
+  color: #ff4411;
 }

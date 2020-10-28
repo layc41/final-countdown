@@ -4,18 +4,17 @@ import Auth from '../utils/auth';
 import { searchMovieDb } from '../utils/API';
 import { useMutation } from '@apollo/react-hooks';
 import { SAVE_MOVIE} from '../utils/mutations';
-import { QUERY_ME } from '../utils/queries';
 
 //import local storage functionality to store saved books and favorited books
-import { getSavedBookIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
+import { getSavedMovieIds, saveMovieIds } from '../utils/localStorage'
 
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState('');
 
-  const [savedMovieIds, setSavedMovieIds] = useState([]);
+  const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
 
-  // useEffect(() => saveMovieIds(savedMovieIds))
+  useEffect(() => saveMovieIds(savedMovieIds))
 
   const [ saveMovie ] = useMutation(SAVE_MOVIE)
 
@@ -42,6 +41,7 @@ const SearchMovies = () => {
       console.error(err);
     }
   };
+  
   const handleSaveMovie = async (movieId) => {
     const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -63,11 +63,11 @@ const SearchMovies = () => {
   return (
     <>
       
-        <Container className='search bg-secondary'>
+      <Container className='search bg-secondary'>
           <h1 className='search-headers'>Search for a Movie!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
-              <Col xs={12} md={8}>
+              <Col xs={12} md={10} className='searchInput'>
                 <Form.Control
                   name='searchInput'
                   value={searchInput}
@@ -77,7 +77,7 @@ const SearchMovies = () => {
                   placeholder='Search for a movie'
                 />
               </Col>
-              <Col xs={12} md={4}>
+              <Col xs={12} md={2} className='searchInput'>
                 <Button type='submit' variant='success' size='lg'>
                   Submit Search
                 </Button>
@@ -87,11 +87,11 @@ const SearchMovies = () => {
         </Container>
       
       <Container>
-        <h2 className='search-headers'>
+        {/* <h2 className='search-headers'>
           {searchedMovies.length
             ? `Viewing ${searchedMovies.length} results:`
             : ''}
-        </h2>
+        </h2> */}
         
           {searchedMovies.map((movie) => {
             return (
@@ -110,7 +110,7 @@ const SearchMovies = () => {
                   
                   {Auth.loggedIn() && ( 
                     <Button
-                      disabled={savedMovieIds?.some((savedMovieIds) => savedMovieIds === movie.movieId)}
+                      disabled={savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)}
                       className="btn btn-dark btn-lg btn-block align-self-end save-button"
                       onClick={() => handleSaveMovie(movie.movieId)}>
                       {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)

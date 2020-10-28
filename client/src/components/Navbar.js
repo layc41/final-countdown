@@ -21,6 +21,9 @@ function Navbar() {
                 <a href="/" onClick={logout} className='logout-link'>
                 Logout
                 </a>
+                <a href="/popular" onClick={Link} className='popular-link'>
+                Popular Movies
+                </a>
                 <a href="/savedmovies" onClick={Link} className='saved-link'>
                 Your Lot
                 </a>
@@ -29,6 +32,9 @@ function Navbar() {
                     <>
                     <div>
                     <Link to="/login" className='login-link'>Login</Link>
+                    </div>
+                    <div>
+                    <Link to="/popular" className='popular-link'>Popular Movies</Link>
                     </div>
                     <div>
                     <Link to="/signup" className='signup-link'>Signup</Link>
