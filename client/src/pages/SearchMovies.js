@@ -4,10 +4,9 @@ import Auth from '../utils/auth';
 import { searchMovieDb } from '../utils/API';
 import { useMutation } from '@apollo/react-hooks';
 import { SAVE_MOVIE} from '../utils/mutations';
-import { QUERY_ME } from '../utils/queries';
 
 //import local storage functionality to store saved books and favorited books
-import { getSavedMovieIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
+import { getSavedMovieIds, saveMovieIds } from '../utils/localStorage'
 
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);

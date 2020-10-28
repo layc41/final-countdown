@@ -6,6 +6,8 @@ import { REMOVE_MOVIE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import { useMutation } from '@apollo/react-hooks';
 
+import { removeMovieId } from '../utils/localStorage';
+
 const SavedMovies = () => {
   // Get user data to display
   const { data } = useQuery(QUERY_ME);
@@ -54,6 +56,8 @@ const SavedMovies = () => {
           movieId: movieToRemove.movieId,
         },
       });
+
+      removeMovieId(movieId);
       setSavedMovieIds([...savedMovieIds]);
       window.location.reload()
     } catch (err) {
