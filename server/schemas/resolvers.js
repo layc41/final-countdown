@@ -46,10 +46,17 @@ const resolvers = {
         saveMovie: async (parent, { movie }, context) => {
             console.log('ARGS', movie)
             if (context.user) {
+<<<<<<< HEAD
                 const updatedMovies = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $push: { savedMovies: movie } },
                     { new: true }
+=======
+                const updatedMovies = await User.findByIdAndUpdate(
+                    { _id: context.user._id, 'savedMovies.movieId': {'$ne': movie.movieId } },
+                    { $addToSet: { savedMovies: movie } },
+                    { new: true, runValidators: true }
+>>>>>>> develop
                 );
                 return updatedMovies
             }
@@ -57,7 +64,11 @@ const resolvers = {
         },
         removeMovie: async (parent, { movieId }, context) => {
             if (context.user) {
+<<<<<<< HEAD
                 const updatedMovies = await User.findOneAndUpdate(
+=======
+                const updatedMovies = await User.findByIdAndUpdate(
+>>>>>>> develop
                     {_id: context.user._id},
                     { $pull: { savedMovies: { movieId: movieId } } },
                     { new: true }
@@ -71,7 +82,7 @@ const resolvers = {
             if (context.user) {
               const updatedFavorites = await User.findOneAndUpdate(
                 { _id: context.user._id },
-                { $push: { favorites: movieId } },
+                { $addToSet: { favorites: movieId } },
                 { new: true }
               ).populate('favorites');
           

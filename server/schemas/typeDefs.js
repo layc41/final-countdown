@@ -9,7 +9,6 @@ const typeDefs = gql`
     posterPath: String
     title: String
   }
-
   type Favorite {
     _id: ID
     movieId: Int
@@ -20,7 +19,6 @@ const typeDefs = gql`
     title: String
     runtime: Int
   }
-
   type User {
     _id: ID!
     username: String
@@ -31,12 +29,10 @@ const typeDefs = gql`
     favoriteCount: Int
     favorites: [Favorite]
   }
-
   type Query {
     me: User
     user(username: String!): User
   }
-
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
@@ -45,14 +41,12 @@ const typeDefs = gql`
     removeMovie(movieId: Int!): User
     removeFavorite(moveId: Int!): User
   }
-
   input saveMovieInput {
     movieId: Int
     overview: String
     posterPath: String
     title: String
   }
-
   type Auth {
     token: ID!
     user: User

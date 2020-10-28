@@ -10,6 +10,7 @@ const movieSchema = new Schema({
   movieId: {
     type: Number,
     required: true,
+    unique: true
   },
   posterPath: {
     type: String,
