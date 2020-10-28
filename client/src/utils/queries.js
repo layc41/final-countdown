@@ -9,7 +9,6 @@ export const QUERY_ME = gql `
         password
         movieCount
         savedMovies {
-            _id
             movieId
             overview
             posterPath
