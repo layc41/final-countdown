@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
-import { Container, Card, CardColumns, Row, Col, CardDeck } from 'react-bootstrap';
+import { Container, Card, Row, CardDeck } from 'react-bootstrap';
 import { popular } from '../utils/API';
 
 const TopRated = () => {
   const [trendingData, setTrendingData] = useState([]);
 
   
-  const trendingMovies = async (event) => {
-    try{
-    const response = await popular();
-    const trending = await response.json();
+  // const trendingMovies = async (event) => {
+  //   try{
+  //   const response = await popular();
+  //   const trending = await response.json();
 
-    const trendingData = trending.results.map((movie) => ({
-      movieId: movie.id,
-      image: movie.poster_path
-    }));
+  //   const trendingData = trending.results.map((movie) => ({
+  //     movieId: movie.id,
+  //     image: movie.poster_path
+  //   }));
   
-    setTrendingData(trendingData);
-  } catch (err) {
-    console.error(err);
-  }
-  };
+  //   setTrendingData(trendingData);
+  // } catch (err) {
+  //   console.error(err);
+  // }
+  // };
 
 //   trendingMovies()
 //     .catch(error => {

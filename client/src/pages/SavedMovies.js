@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/react-hooks';
-import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns, CardGroup, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Col,  Button, Card, CardGroup, Row } from 'react-bootstrap';
 import Auth from '../utils/auth'
 import { REMOVE_MOVIE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';

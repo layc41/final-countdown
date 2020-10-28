@@ -74,7 +74,7 @@ function uploadTransactions() {
           // clear store after successful upload
           transactionObjectStore.clear();
 
-          alert('All offline transactions have been submitted');
+          alert('All offline movies have been submitted');
         })
         .catch(err => console.log(err));
     }

@@ -111,6 +111,7 @@ code {
 
 .search {
   padding: 20px;
+  margin-top: 20px;
 }
 
 .search-headers {
@@ -187,4 +188,17 @@ a {
   margin-right: var(--spacing-two);
   margin-left: var(--spacing-two);
   color: #ff4411;
+}
+
+#title {
+  color: #ff4411;
+  font-size: 2rem;
+}
+
+.nav-link {
+  color: #ff4411;
+}
+
+.navbar-toggler-icon {
+  color: black;
 }

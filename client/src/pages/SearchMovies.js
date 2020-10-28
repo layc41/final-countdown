@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns, CardGroup, Row } from 'react-bootstrap';
+import { Container, Col, Form, Button, Card, CardGroup, Row } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { searchMovieDb } from '../utils/API';
 import { useMutation } from '@apollo/react-hooks';
