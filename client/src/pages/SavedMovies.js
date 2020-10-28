@@ -68,7 +68,7 @@ const SavedMovies = () => {
       <Container className='justify-content-between' style={{ textAlign: 'center', paddingLeft: '0px', paddingRight: '0px', marginTop: '15px' }} >
         <h2 className='title-heading'>
           {userSavedMovies.length
-            ? `Viewing ${username}'s saved movies:`
+            ? `Viewing Your Saved Movies:`
             : `${username}: you have no saved movies`}
         </h2>
         <Row>
