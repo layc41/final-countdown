@@ -71,11 +71,11 @@ const SavedMovies = () => {
             ? `Viewing ${username}'s saved movies:`
             : `${username}: you have no saved movies`}
         </h2>
-       
+        <Row>
           {userSavedMovies.map((movie) => {
             return (
               <CardGroup style={{ justifyContent: 'center', textAlign: 'center' }}>
-              <Row>
+              
                 <Col>
                 <Card key={movie.movieId} border='dark'>
                 
@@ -104,10 +104,13 @@ const SavedMovies = () => {
             
               </Card>
               </Col>
-              </Row>
+              
               </CardGroup>
+              
             );
+            
           })}
+          </Row>
 
       </Container>
     </>
