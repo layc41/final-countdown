@@ -5,15 +5,21 @@ import { searchMovieDb } from '../utils/API';
 import { useMutation } from '@apollo/react-hooks';
 import { SAVE_MOVIE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
+import { useQuery } from '@apollo/react-hooks';
 
 //import local storage functionality to store saved books and favorited books
 import { getSavedMovieIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
 
 const SearchMovies = () => {
+  const { data } = useQuery(QUERY_ME);
+  // Set the movies they have saved
+  const userSavedMovies = data?.me.savedMovies || [];
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState('');
 
-  const [savedMovieIds, setSavedMovieIds] = useState([]);
+  const [savedMovieIds, setSavedMovieIds] = useState(data?.me.savedMovies, []);
+
+  console.log(savedMovieIds)
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
@@ -58,10 +64,16 @@ const SearchMovies = () => {
         },
       });
       setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
+      removeDuplicate(movieId)
     } catch (err) {
       console.error(err);
     }
   };
+
+  function removeDuplicate(movieId) {
+    return userSavedMovies.filter((value, index) => userSavedMovies.indexOf(value) === index)
+  }
+
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>

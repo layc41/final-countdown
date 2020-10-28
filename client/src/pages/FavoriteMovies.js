@@ -2,10 +2,9 @@ import { useQuery } from '@apollo/react-hooks';
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../utils/auth'
-import { ADD_FAVORITE, REMOVE_MOVIE } from '../utils/mutations';
+import { REMOVE_MOVIE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import { useMutation } from '@apollo/react-hooks';
-import { getMe } from '../utils/API'
 
 const SavedMovies = () => {
   // Get user data to display
@@ -15,27 +14,29 @@ const SavedMovies = () => {
   // Set the movies they have saved
   const userSavedMovies = data?.me.savedMovies || [];
   const [savedMovieIds, setSavedMovieIds] = useState([]);
-
   // removeMovie mutation
   const [ removeMovie ] = useMutation(REMOVE_MOVIE);
-  
-  // const [ addFavorite ] = useMutation(ADD_FAVORITE)
-  // const [favMovieIds, setFavMovieIds] = useState([]);
 
-  // const handleFavMovie = async (movieId) => {
-  //   const movieToFav = userSavedMovies.find((movie) => movie.movieId === movieId);
+  // const handleFavMovie = async => {
   //   const token = Auth.loggedIn() ? Auth.getToken() : null;
   //   if (!token) {
-  //     return false;
-  //   }
-  //   try {
-  //     await addFavorite({
-  //       variables: {
-  //         movieId: movieToRemove.movieId,
-  //       },
-  //     });
-  //     setSavedMovieIds([...savedMovieIds]);
-  //   } catch (err) {
+  //         return false;
+  //       }
+  //     try {
+  //       const response = await getMe(token);
+  //       if (!response.ok) {
+  //         throw new Error('something went wrong!');
+  //       }
+  //       const { results } = await response.json();
+  //       const movieData = results.map((movie) => ({
+  //         movieId: movie.id,
+  //         title: movie.title,
+  //         description: movie.overview,
+  //         image: movie.poster_path || '',
+  //       }));
+  //       setSearchedMovies(movieData);
+  //       setSearchInput('');
+  //     } catch (err) {
   //     console.error(err);
   //   }
   // };
@@ -88,16 +89,6 @@ const SavedMovies = () => {
                         : 'Delete this Movie!'}
                     </Button>
                   )}
-                   {/* {Auth.loggedIn() && (
-                    <Button
-                      disabled={savedMovieIds?.some((savedMovieIds) => savedMovieIds === movie.movieId)}
-                      className='btn-block btn-info'
-                      onClick={() => handleFavMovie(movie.movieId)}>
-                      {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)
-                        ? 'This movie has already been favorited!'
-                        : 'Favorite this Movie!'}
-                    </Button>
-                  )} */}
                 </Card.Body>
               </Card>
             );
