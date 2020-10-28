@@ -9,10 +9,7 @@ import SignupForm from './components/SignupForm';
 import NoMatch from './pages/NoMatch';
 import TopRated from './components/TopRated';
 import SearchMovies from './pages/SearchMovies';
-<<<<<<< HEAD
-=======
 import Footer from './components/Footer';
->>>>>>> develop
 import SavedMovies from './pages/SavedMovies'
 
 const client = new ApolloClient({

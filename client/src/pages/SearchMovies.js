@@ -1,35 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns, CardGroup, Row } from 'react-bootstrap';
+import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { searchMovieDb } from '../utils/API';
 import { useMutation } from '@apollo/react-hooks';
 import { SAVE_MOVIE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
-import { useQuery } from '@apollo/react-hooks';
 
 //import local storage functionality to store saved books and favorited books
 import { getSavedMovieIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
 
 const SearchMovies = () => {
-  const { data } = useQuery(QUERY_ME);
-  // Set the movies they have saved
-  const userSavedMovies = data?.me.savedMovies || [];
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState('');
 
-<<<<<<< HEAD
-  const [savedMovieIds, setSavedMovieIds] = useState(data?.me.savedMovies, []);
-
-  console.log(savedMovieIds)
+  const [savedMovieIds, setSavedMovieIds] = useState([]);
 
   useEffect(() => {
     return () => saveMovieIds(savedMovieIds);
   }, []);
-=======
-  const [savedMovieIds, setSavedMovieIds] = useState([]);
-
-  // useEffect(() => saveMovieIds(savedMovieIds))
->>>>>>> develop
 
   const [ saveMovie ] = useMutation(SAVE_MOVIE)
 
@@ -70,27 +58,15 @@ const SearchMovies = () => {
         },
       });
       setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
-<<<<<<< HEAD
-      removeDuplicate(movieId)
-=======
->>>>>>> develop
     } catch (err) {
       console.error(err);
     }
   };
-<<<<<<< HEAD
-
-  function removeDuplicate(movieId) {
-    return userSavedMovies.filter((value, index) => userSavedMovies.indexOf(value) === index)
-  }
-
-=======
->>>>>>> develop
   return (
     <>
-      
-        <Container className='search bg-secondary'>
-          <h1 className='search-headers'>Search for a Movie!</h1>
+      <Jumbotron fluid className='text-light bg-dark'>
+        <Container>
+          <h1>Search for a Movie!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -111,17 +87,16 @@ const SearchMovies = () => {
             </Form.Row>
           </Form>
         </Container>
-      
+      </Jumbotron>
       <Container>
-        <h2 className='search-headers'>
+        <h2>
           {searchedMovies.length
             ? `Viewing ${searchedMovies.length} results:`
-            : ''}
+            : 'Search for a movie to begin'}
         </h2>
-        
+        <CardColumns>
           {searchedMovies.map((movie) => {
             return (
-<<<<<<< HEAD
               <Card key={movie.movieId} border='dark'>
                 {movie.image ? (
                   <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.posterPath}`} alt={`The cover for ${movie.title}`} variant='top' />
@@ -130,43 +105,20 @@ const SearchMovies = () => {
                   <Card.Title>{movie.title}</Card.Title>
                   <Card.Text>{movie.overview}</Card.Text>
                   {Auth.loggedIn() && (
-=======
-              <CardGroup>
-              <Row>
-                <Col>
-                <Card key={movie.movieId} border='dark'>
-                
-                <Card.Title className='text-center'>{movie.title}</Card.Title>
-                <Card.Body className='d-flex justify-content-center'>
-                {movie.posterPath ? (
-                  <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.posterPath}`} alt={`The cover for ${movie.title}`} variant='center' />
-                ) : null}
-                  
-                  <Card.Text>{movie.overview}</Card.Text>
-                  
-                  {Auth.loggedIn() && ( 
->>>>>>> develop
                     <Button
                       disabled={savedMovieIds?.some((savedMovieIds) => savedMovieIds === movie.movieId)}
-                      className="btn btn-dark btn-lg btn-block align-self-end save-button"
+                      className='btn-block btn-info'
                       onClick={() => handleSaveMovie(movie.movieId)}>
                       {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)
-                        ? 'Saved to your lot!'
+                        ? 'This movie has already been saved!'
                         : 'Save this Movie!'}
                     </Button>
                   )}
-<<<<<<< HEAD
-=======
-                  
->>>>>>> develop
                 </Card.Body>
               </Card>
-              </Col>
-              </Row>
-              </CardGroup>
             );
           })}
-        
+        </CardColumns>
       </Container>
     </>
   );
