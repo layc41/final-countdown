@@ -29,7 +29,6 @@ mutation saveMovie($movie: saveMovieInput) {
   saveMovie(movie: $movie) {
     username
     savedMovies {
-      _id
       movieId
       overview
       posterPath

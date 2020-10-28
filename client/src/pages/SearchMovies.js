@@ -7,15 +7,15 @@ import { SAVE_MOVIE} from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 
 //import local storage functionality to store saved books and favorited books
-import { getSavedBookIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
+import { getSavedMovieIds, saveMovieIds, getSavedFavoriteIds, saveFavoriteIds } from '../utils/localStorage'
 
 const SearchMovies = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [searchInput, setSearchInput] = useState('');
 
-  const [savedMovieIds, setSavedMovieIds] = useState([]);
+  const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
 
-  // useEffect(() => saveMovieIds(savedMovieIds))
+  useEffect(() => saveMovieIds(savedMovieIds))
 
   const [ saveMovie ] = useMutation(SAVE_MOVIE)
 
@@ -42,6 +42,7 @@ const SearchMovies = () => {
       console.error(err);
     }
   };
+  
   const handleSaveMovie = async (movieId) => {
     const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -110,7 +111,7 @@ const SearchMovies = () => {
                   
                   {Auth.loggedIn() && ( 
                     <Button
-                      disabled={savedMovieIds?.some((savedMovieIds) => savedMovieIds === movie.movieId)}
+                      disabled={savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)}
                       className="btn btn-dark btn-lg btn-block align-self-end save-button"
                       onClick={() => handleSaveMovie(movie.movieId)}>
                       {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)
