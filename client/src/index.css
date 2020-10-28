@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: url('./assets/video-1s-1084px.png');
   text-align: center;
-  
+  padding-bottom: 90px;
 }
 
 code {
@@ -84,7 +84,16 @@ code {
 
 .logout-link {
   position:absolute;
-  top:30px;
+  top:35px;
+  right:10px;
+  color: #ff4411; 
+  font-size: 24px; 
+  font-family: 'Signika', sans-serif;
+}
+
+.saved-link {
+  position:absolute;
+  top:5px;
   right:10px;
   color: #ff4411; 
   font-size: 24px; 

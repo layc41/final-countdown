@@ -32,8 +32,9 @@ function App() {
     <Router>
       <>
       <Navbar />
+        <SearchMovies />
           <Switch>
-            <Route exact path="/" component={SearchMovies} />
+            <Route exact path="/" component={TopRated} />
             <Route exact path="/signup" component={SignupForm} />
             <Route exact path="/login" component={LoginForm}/>
             <Route exact path="/savedmovies" component={SavedMovies} />

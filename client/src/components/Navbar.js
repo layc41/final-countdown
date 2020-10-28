@@ -21,6 +21,9 @@ function Navbar() {
                 <a href="/" onClick={logout} className='logout-link'>
                 Logout
                 </a>
+                <a href="/savedmovies" onClick={Link} className='saved-link'>
+                Your Lot
+                </a>
                 </>
                 ) : (
                     <>
