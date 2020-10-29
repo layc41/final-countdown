@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <footer className='bg-secondary flex-row justify-content-around'>
+    <footer className='flex-row justify-content-around'>
       <a href='https://github.com/tbreazier' target='blank'>
           <img src={require('../assets/github2.png')} className='footer-icon' alt='logo'></img>
           <h6 className='footerName'>Tom</h6>

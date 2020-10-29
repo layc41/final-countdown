@@ -78,8 +78,8 @@ const SearchMovies = () => {
                 />
               </Col>
               <Col xs={12} md={2} className='searchInput'>
-                <Button type='submit' variant='success' size='lg'>
-                  Submit Search
+                <Button type='submit' size='lg'>
+                  Search
                 </Button>
               </Col>
             </Form.Row>
@@ -100,7 +100,7 @@ const SearchMovies = () => {
                 <Col>
                 <Card key={movie.movieId} border='dark'>
                 
-                <Card.Title className='text-center'>{movie.title}</Card.Title>
+                <Card.Title className='text-center card-title'>{movie.title}</Card.Title>
                 <Card.Body className='d-flex justify-content-center'>
                 {movie.posterPath ? (
                   <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.posterPath}`} alt={`The cover for ${movie.title}`} variant='center' />

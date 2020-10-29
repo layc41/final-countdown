@@ -5,9 +5,10 @@ import Auth from '../utils/auth'
 import { REMOVE_MOVIE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import { useMutation } from '@apollo/react-hooks';
-import { removeMovieId } from '../utils/localStorage';
+import { removeMovieId, getSavedMovieIds } from '../utils/localStorage';
 
 const SavedMovies = () => {
+  
   // Get user data to display
   const { data } = useQuery(QUERY_ME);
   // Set the username from user data
@@ -71,7 +72,7 @@ const SavedMovies = () => {
             ? `Viewing Your Saved Movies:`
             : `${username}: you have no saved movies`}
         </h2>
-        <Row>
+        <Row style={{ justifyContent: 'center'}}>
           {userSavedMovies.map((movie) => {
             return (
               <CardGroup style={{ justifyContent: 'center', textAlign: 'center' }}>
@@ -79,7 +80,7 @@ const SavedMovies = () => {
                 <Col>
                 <Card key={movie.movieId} border='dark'>
                 
-                <Card.Title className='text-center' style={{ textAlign: 'center'}}>{movie.title}</Card.Title>
+                {/* <Card.Title className='text-center' style={{ textAlign: 'center', flexWrap: 'wrap'}}>{movie.title}</Card.Title> */}
                 {movie.posterPath ? (
                   <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.posterPath}`} alt={`The cover for ${movie.title}`} variant='center' className='saved'/>
                 ) : null}

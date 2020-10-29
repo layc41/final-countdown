@@ -1,9 +1,16 @@
+/* * {
+  padding: 0;
+  margin: 0;
+
+} */
+
 body {
   margin: 0;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-image: url('./assets/video-1s-1084px.png');
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+  /* background-image: url('./assets/video-1s-1084px.png'); */
+  background-color: #103557!important;
   text-align: center;
   padding-bottom: 90px;
 }
@@ -56,12 +63,12 @@ code {
 }
 
 .title {
-  color: #ff4411; 
+  color: #f1faee; 
   font-size: 72px; 
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   text-align: center;
   align-items: center;
-  background-color: #6c757d;
+  background-color: #a8dadc;
 }
 
 .signup-link {
@@ -112,10 +119,11 @@ code {
 .search {
   padding: 20px;
   margin-top: 20px;
+
 }
 
 .search-headers {
-  color: #ff4411; 
+  color: #f1faee; 
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   text-align: center;
 }
@@ -136,7 +144,7 @@ img {
 
 .card-title {
   size: 48px;
-  color: #ff4411;
+  color: #e63946;
 }
 
 footer {
@@ -149,17 +157,18 @@ footer {
   font-size: 30px;
   text-decoration: none;
   color: black;
+  background-color: #457b9d;
 }
 
 a {
   text-decoration: none;
-  color: #ff4411;
+  color: #e63946;
 }
 
 .title-heading {
-  color: #ff4411;
+  color: white;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  background-color: #6c757d!important;
+  background-color: #457b9d!important;
 }
 
 .save-button {
@@ -168,7 +177,7 @@ a {
 
 .footerName {
   text-align: center;
-  color: #ff4411;
+  color: #f1faee;
 }
 
 .searchInput {
@@ -191,14 +200,38 @@ a {
 }
 
 #title {
-  color: #ff4411;
+  color: #f1faee;
   font-size: 2rem;
 }
 
 .nav-link {
-  color: #ff4411;
+  color: #f1faee;
+  font-size: larger;
 }
 
 .navbar-toggler-icon {
   color: black;
 }
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+ }
+
+ .card-title {
+   font-size: 2rem!important;
+ }
+
+ nav {
+  background-color: #457b9d!important;
+ }
+
+ .btn-primary {
+   background-color: #457b9d!important;
+ }
+
+ .card {
+   background-color: #f1faee!important;
+ }
+

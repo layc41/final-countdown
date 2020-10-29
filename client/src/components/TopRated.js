@@ -59,17 +59,17 @@ const TopRated = () => {
           {trendingData.map((movie) => {
               return (
                   <div style={{ width: '200px', margin: '5px'}}>
-                  <CardDeck style={{ width: '100px'}}>
-                      <Card>
-                          <div className={Row} key={movie.movieId} border='dark'>
+                  <div bg='black' style={{ width: '100px', border: '3px black'}}>
+                     
+                          <div className={Row} key={movie.movieId} bg='black'>
 
                               {movie.image ? (
                                   <img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.image}`} alt={`The cover for ${movie.title}`} variant='top' />
                               ) : null}
 
                           </div>
-                      </Card>
-                  </CardDeck>
+                      
+                  </div>
                   </div>
 
          

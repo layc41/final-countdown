@@ -13,7 +13,7 @@ function AppNavbar() {
 
     return (
         <>
-          <Navbar bg='secondary' variant='dark' expand='lg'>
+          <Navbar className='sticky-top' expand='lg'>
             <Container fluid>
               <Navbar.Brand id='title' as={Link} to='/'>
                 Movie Lot
