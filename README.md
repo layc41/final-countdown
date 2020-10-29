@@ -17,7 +17,7 @@ As movie lovers, we wanted an app that would introduce us to new and old movies 
 ## Usage  
 
 [MOVIE LOT](https://movielot.herokuapp.com/) is a platform for movie lovers, enthusiasts, and everyday individuals to search for new movies, store their favorite movies, and learn more about them.  
-![A platform for movie lovers, enthusiasts, and everyday individuals](/client/src/assets/movielot.png)  
+![A platform for movie lovers, enthusiasts, and everyday individuals](https://github.com/tbreazier/final-countdown/blob/develop/client/src/assets/movielot.png)  
 
 ## Licensing  
 None  
