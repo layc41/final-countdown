@@ -8,17 +8,15 @@ import { useMutation } from '@apollo/react-hooks';
 import { removeMovieId, getSavedMovieIds } from '../utils/localStorage';
 
 const SavedMovies = () => {
-  
   // Get user data to display
   const { data } = useQuery(QUERY_ME);
   // Set the username from user data
   const username = data?.me.username
   // Set the movies they have saved
   const userSavedMovies = data?.me.savedMovies || [];
-  const [savedMovieIds, setSavedMovieIds] = useState([]);
+  const [savedMovieIds, setSavedMovieIds] = useState([userSavedMovies]);
   // removeMovie mutation
   const [ removeMovie ] = useMutation(REMOVE_MOVIE);
-
   // const handleFavMovie = async => {
   //   const token = Auth.loggedIn() ? Auth.getToken() : null;
   //   if (!token) {
@@ -72,15 +70,16 @@ const SavedMovies = () => {
             ? `Viewing Your Saved Movies:`
             : `${username}: you have no saved movies`}
         </h2>
-        <Row style={{ justifyContent: 'center'}}>
+        <Row>
           {userSavedMovies.map((movie) => {
+            this.
             return (
               <CardGroup style={{ justifyContent: 'center', textAlign: 'center' }}>
               
                 <Col>
                 <Card key={movie.movieId} border='dark'>
                 
-                {/* <Card.Title className='text-center' style={{ textAlign: 'center', flexWrap: 'wrap'}}>{movie.title}</Card.Title> */}
+                <Card.Title className='text-center' style={{ textAlign: 'center'}}>{movie.title}</Card.Title>
                 {movie.posterPath ? (
                   <Card.Img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.posterPath}`} alt={`The cover for ${movie.title}`} variant='center' className='saved'/>
                 ) : null}
