@@ -5,7 +5,7 @@ import Auth from '../utils/auth'
 import { REMOVE_MOVIE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries';
 import { useMutation } from '@apollo/react-hooks';
-import { removeMovieId, getSavedMovieIds } from '../utils/localStorage';
+import { removeMovieId } from '../utils/localStorage';
 
 const SavedMovies = () => {
   
