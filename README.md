@@ -48,7 +48,7 @@ If you would like to contribute please e-mail or contact one of the original con
 ## Original Credits
   - [Tom Breazier](https://github.com/tbreazier) 
   - [Claudia Lay](https://github.com/layc41) 
-  - [Joseph Ramos](https://github.com/joshuaweisbrodtorres) 
+  - [Joseph Ramos](https://github.com/Joey-Ramos) 
   - [Alvaro Saldana](https://github.com/asaldana1108) 
   - [Joshua Weisbrod-Torres](https://github.com/joshuaweisbrodtorres) 
   - [Darius Wright](https://github.com/DariusJWright) 
